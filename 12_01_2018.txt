@@ -1,0 +1,37 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<stdio.h>
+
+void func(int * a, int * b);
+
+
+
+void func(int * a, int * b)
+{
+	int c;
+	c = *a;
+	*a = *b;
+	*b = c;
+	printf("\na = %d\tb = %d\tv funkcii func\n", a, b);					
+}
+
+
+
+
+int main()
+{
+	int a = 5, b = 10;
+	printf("\na = %d\tb = %d\tdo visova funkcii func\n", a, b);			
+	
+	func(&a, &b);
+
+	printf("\na = %d\tb = %d\tposle visova funkcii func\n", a, b);		
+	
+	printf("\n\n\nThe end!!!\n");
+	_getch();
+	return 0;
+}

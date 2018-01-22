@@ -1,0 +1,186 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<locale.h>
+
+int main()
+{
+	//setlocale(0, "russian");
+
+	char x, y;
+	unsigned char a, b;
+
+	x = 'w';
+	y = 'þ';
+	a = 'w';
+	b = 'þ';
+
+	printf("\nx = %c\tx = %d\n", x, x);
+	printf("\ny = %c\ty = %d\n", y, y);
+	printf("\na = %c\ta = %d\n", a, a);
+	printf("\nb = %c\tb = %d\n", b, b);
+
+	printf("\n\n---------------------------\n\n");
+
+	printf("\nVvedite x: ");
+	fflush(stdin);
+	scanf("%c", &x);
+
+	printf("\nVvedite y: ");
+	fflush(stdin);
+	scanf("%c", &y);
+
+	printf("\nVvedite a: ");
+	fflush(stdin);
+	scanf("%c", &a);
+
+	printf("\nVvedite b: ");
+	fflush(stdin);
+	scanf("%c", &b);
+
+	printf("\n\n");
+
+	printf("\nx = %c\tx = %d\n", x, x);
+	printf("\ny = %c\ty = %d\n", y, y);
+	printf("\na = %c\ta = %d\n", a, a);
+	printf("\nb = %c\tb = %d\n", b, b);
+
+
+	printf("\n\n\nThe end!!!\n");
+	_getch();
+	return 0;
+}
+
+///////////////////////////
+
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<locale.h>
+
+int main()
+{
+	//setlocale(0, "russian");
+
+	for(int i = -128; i <= 255; i++)
+	{
+		printf("Simvol '%c' imeet kod %d\n", i, i);
+	}
+
+
+	printf("\n\n\nThe end!!!\n");
+	_getch();
+	return 0;
+}
+
+/////////////////////
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<locale.h>
+
+int main()
+{
+	char str[100] = "privet";
+	char str1[] = "privet";
+	char * str2 = "privet";
+	char str3[100] = {'p', 'r', 'i', 'v', 'e', 't'};
+	char str4[] = {'p', 'r', 'i', 'v', 'e', 't', '\0'};
+
+
+	puts(str4);
+
+	printf("\n\n\nThe end!!!\n");
+	_getch();
+	return 0;
+}
+
+//////////////////////////
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<locale.h>
+
+int main()
+{
+	char x[100], y[100], z[100];
+
+	printf("\nVvedite stroku x: ");
+	fflush(stdin);
+	gets(x);
+	
+	printf("\nVvedite stroku y i stroku z: ");
+	fflush(stdin);
+	gets(y);
+	gets(z);
+
+	puts("\n\n------------------");
+	puts(x);
+	puts(y);
+	puts(z);
+
+
+
+	/*
+	printf("\nVvedite stroku x: ");
+	fflush(stdin);
+	scanf("%s", x);
+	
+	printf("\nVvedite stroku y i stroku z: ");
+	fflush(stdin);
+	scanf("%s%s", y, z);
+
+
+	printf("\n\n\nstroka x: %s\nstroka y: %s\nstroka z: %s\n", x, y, z);
+	*/
+
+	printf("\n\n\nThe end!!!\n");
+	_getch();
+	return 0;
+}
+
+
+///////////////////////////////////////
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<locale.h>
+
+int main()
+{
+	char x[100];
+	int i;
+
+	printf("\nVvedite stroku x: ");
+	fflush(stdin);
+	gets(x);
+	
+	for(i = 0; x[i] != '\0';  i++);
+	
+
+	printf("\n\nKolichestvo simvolov v stroke: %d\n", i);
+
+	printf("\n\n\nThe end!!!\n");
+	_getch();
+	return 0;
+}
+
