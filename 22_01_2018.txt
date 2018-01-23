@@ -1,0 +1,449 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<String.h>
+
+struct Student
+{
+	char fam[20], name[20], pol;	
+	int group, marks[5];
+	double rost, ves;
+};
+
+
+
+int main()
+{ 
+	Student ob, * p = &ob;
+
+	printf("\nVvedite fam: ");
+	fflush(stdin);
+	scanf("%s", ob.fam);		//scanf("%s", p->fam);		
+
+	printf("\nVvedite name: ");
+	fflush(stdin);
+	scanf("%s", ob.name);
+
+	printf("\nVvedite pol: ");
+	fflush(stdin);
+	scanf("%c", &ob.pol);
+
+	printf("\nVvedite group: ");
+	scanf("%d", &ob.group);
+
+	printf("\nVvedite ocenki: ");
+	for(int j = 0; j < 5; j++)
+	{
+		printf("\nVvedite %d ocenku: ", j+1);
+		scanf("%d", &ob.marks[j]);
+	}
+
+	printf("\nVvedite rost: ");
+	scanf("%lf", &ob.rost);
+
+	printf("\nVvedite ves: ");
+	scanf("%lf", &ob.ves);
+
+	system("cls");
+
+	printf("\n=============================================================================================================\n");
+	printf("%-20s%-20s%-7s%-9s   %-17s%-12s%-12s", "Familia", "Imia", "Pol", "Group", "Ocenki", "Rost", "Ves");
+	printf("\n=============================================================================================================\n\n");
+
+	printf("%-20s%-20s %-6c %-8d%-3d%-3d%-3d%-3d%-3d     %-12.1lf%-12.1lf", ob.fam, ob.name, ob.pol, ob.group, ob.marks[0], ob.marks[1], ob.marks[2], ob.marks[3], ob.marks[4], ob.rost, ob.ves);
+
+
+
+
+	
+	
+	printf("\n\n\nThe end!!!\n");
+	_getch();
+	return 0;
+}
+
+///////////////////////
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<String.h>
+
+struct Student
+{
+	char fam[20], name[20], pol;	
+	int group, marks[5];
+	double rost, ves;
+};
+
+
+int main()
+{ 
+	Student ob, * p = &ob;
+
+	printf("\nVvedite fam: ");
+	fflush(stdin);
+	scanf("%s", ob.fam);		//scanf("%s", p->fam);		
+
+	printf("\nVvedite name: ");
+	fflush(stdin);
+	scanf("%s", ob.name);
+
+	printf("\nVvedite pol: ");
+	fflush(stdin);
+	scanf("%c", &ob.pol);
+
+	printf("\nVvedite group: ");
+	scanf("%d", &ob.group);
+
+	printf("\nVvedite ocenki: ");
+	for(int j = 0; j < 5; j++)
+	{
+		printf("\nVvedite %d ocenku: ", j+1);
+		scanf("%d", &ob.marks[j]);
+	}
+
+	printf("\nVvedite rost: ");
+	scanf("%lf", &ob.rost);
+
+	printf("\nVvedite ves: ");
+	scanf("%lf", &ob.ves);
+
+	system("cls");
+
+	printf("\n=============================================================================================================\n");
+	printf("%-20s%-20s%-7s%-9s   %-17s%-12s%-12s", "Familia", "Imia", "Pol", "Group", "Ocenki", "Rost", "Ves");
+	printf("\n=============================================================================================================\n\n");
+
+	printf("%-20s%-20s %-6c %-8d", ob.fam, ob.name, ob.pol, ob.group);
+	for(int j = 0; j < 5; j++)
+	{
+		printf("%-3d", ob.marks[j]);
+	}
+	printf("     %-12.1lf%-12.1lf\n\n", ob.rost, ob.ves);
+
+
+
+	
+	
+	printf("\n\n\nThe end!!!\n");
+	_getch();
+	return 0;
+}
+
+
+/////////////////////////
+
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<String.h>
+
+struct Date
+{
+	int day, month, year;
+};
+
+
+struct Student
+{
+	char		fam[20], name[20], pol;	
+	int			group, marks[5];
+	double		rost, ves;
+	Date		birthday;
+};
+
+
+
+int main()
+{ 
+	Student ob, * p = &ob;
+
+	printf("\nVvedite fam: ");
+	fflush(stdin);
+	scanf("%s", ob.fam);		//scanf("%s", p->fam);		
+
+	printf("\nVvedite name: ");
+	fflush(stdin);
+	scanf("%s", ob.name);
+
+	printf("\nVvedite pol: ");
+	fflush(stdin);
+	scanf("%c", &ob.pol);
+
+	printf("\nVvedite group: ");
+	scanf("%d", &ob.group);
+
+	printf("\nVvedite ocenki: ");
+	for(int j = 0; j < 5; j++)
+	{
+		printf("\nVvedite %d ocenku: ", j+1);
+		scanf("%d", &ob.marks[j]);
+	}
+
+	printf("\nVvedite rost: ");
+	scanf("%lf", &ob.rost);
+
+	printf("\nVvedite ves: ");
+	scanf("%lf", &ob.ves);
+
+	printf("\nVvedite year rojdenia: ");
+	scanf("%d", &ob.birthday.year);
+
+	printf("\nVvedite month rojdenia: ");
+	scanf("%d", &ob.birthday.month);
+
+	printf("\nVvedite day rojdenia: ");
+	scanf("%d", &ob.birthday.day);
+
+	system("cls");
+
+	printf("\n=============================================================================================================\n");
+	printf("%-20s%-20s%-7s%-9s   %-17s%-12s%-12s%-14s", "Familia", "Imia", "Pol", "Group", "Ocenki", "Rost", "Ves", "Birthday");
+	printf("\n=============================================================================================================\n\n");
+
+	printf("%-20s%-20s %-6c %-8d", ob.fam, ob.name, ob.pol, ob.group);
+	for(int j = 0; j < 5; j++)
+	{
+		printf("%-3d", ob.marks[j]);
+	}
+	printf("     %-12.1lf%-12.1lf%02d.%02d.%d\n\n", ob.rost, ob.ves, ob.birthday.day, ob.birthday.month, ob.birthday.year);
+
+
+
+
+
+	
+	
+	printf("\n\n\nThe end!!!\n");
+	_getch();
+	return 0;
+}
+
+/////////////////////
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<String.h>
+
+struct Date
+{
+	int day, month, year;
+};
+
+struct Student
+{
+	char		fam[20], name[20], pol;	
+	int			group, marks[5];
+	double		rost, ves;
+	Date		birthday;
+};
+
+
+
+int main()
+{ 
+	const int N = 30;
+	Student ob[N];
+	int n;
+
+	do
+	{
+		printf("\nVvedite kolichestvo studentov ot 1 do %d: ", N);
+		scanf("%d", &n);
+	}
+	while(n < 1 || n > N);
+
+	for(int i = 0; i < n; i++)
+	{
+		system("cls");
+		printf("\nVvedite fam: ");
+		fflush(stdin);
+		scanf("%s", ob[i].fam);				
+
+		printf("\nVvedite name: ");
+		fflush(stdin);
+		scanf("%s", ob[i].name);
+
+		printf("\nVvedite pol: ");
+		fflush(stdin);
+		scanf("%c", &ob[i].pol);
+
+		printf("\nVvedite group: ");
+		scanf("%d", &ob[i].group);
+
+		printf("\nVvedite ocenki: ");
+		for(int j = 0; j < 5; j++)
+		{
+			printf("\nVvedite %d ocenku: ", j+1);
+			scanf("%d", &ob[i].marks[j]);
+		}
+
+		printf("\nVvedite rost: ");
+		scanf("%lf", &ob[i].rost);
+
+		printf("\nVvedite ves: ");
+		scanf("%lf", &ob[i].ves);
+
+		printf("\nVvedite year rojdenia: ");
+		scanf("%d", &ob[i].birthday.year);
+
+		printf("\nVvedite month rojdenia: ");
+		scanf("%d", &ob[i].birthday.month);
+
+		printf("\nVvedite day rojdenia: ");
+		scanf("%d", &ob[i].birthday.day);
+	}
+
+	system("cls");
+	printf("\n=============================================================================================================\n");
+	printf("%-20s%-20s%-7s%-9s   %-17s%-12s%-12s%-14s", "Familia", "Imia", "Pol", "Group", "Ocenki", "Rost", "Ves", "Birthday");
+	printf("\n=============================================================================================================\n\n");
+
+	for(int i = 0; i < n; i++)
+	{
+		printf("%-20s%-20s %-6c %-8d", ob[i].fam, ob[i].name, ob[i].pol, ob[i].group);
+		for(int j = 0; j < 5; j++)
+		{
+			printf("%-3d", ob[i].marks[j]);
+		}
+		printf("     %-12.1lf%-12.1lf%02d.%02d.%d\n\n", ob[i].rost, ob[i].ves, ob[i].birthday.day, ob[i].birthday.month, ob[i].birthday.year);
+	}
+
+
+
+
+	
+	
+	printf("\n\n\nThe end!!!\n");
+	_getch();
+	return 0;
+}
+
+//////////////////////////
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<String.h>
+
+struct Date
+{
+	int day, month, year;
+};
+
+struct Student
+{
+	char		fam[20], name[20], pol;	
+	int			group, marks[5];
+	double		rost, ves;
+	Date		birthday;
+};
+
+void createArrayStudents(Student ob[], int n);
+void createArrayStudents(Student ob[], int n)
+{
+	for(int i = 0; i < n; i++)
+	{
+		system("cls");
+		printf("\nVvedite fam: ");
+		fflush(stdin);
+		scanf("%s", ob[i].fam);				
+
+		printf("\nVvedite name: ");
+		fflush(stdin);
+		scanf("%s", ob[i].name);
+
+		printf("\nVvedite pol: ");
+		fflush(stdin);
+		scanf("%c", &ob[i].pol);
+
+		printf("\nVvedite group: ");
+		scanf("%d", &ob[i].group);
+
+		printf("\nVvedite ocenki: ");
+		for(int j = 0; j < 5; j++)
+		{
+			printf("\nVvedite %d ocenku: ", j+1);
+			scanf("%d", &ob[i].marks[j]);
+		}
+
+		printf("\nVvedite rost: ");
+		scanf("%lf", &ob[i].rost);
+
+		printf("\nVvedite ves: ");
+		scanf("%lf", &ob[i].ves);
+
+		printf("\nVvedite year rojdenia: ");
+		scanf("%d", &ob[i].birthday.year);
+
+		printf("\nVvedite month rojdenia: ");
+		scanf("%d", &ob[i].birthday.month);
+
+		printf("\nVvedite day rojdenia: ");
+		scanf("%d", &ob[i].birthday.day);
+	}
+}
+
+void showArrayStudents(Student [], int);			//void showArrayStudents(Student *, int);
+void showArrayStudents(Student ob[], int n)			//void showArrayStudents(Student * ob, int n);
+{
+	system("cls");
+	printf("\n=============================================================================================================\n");
+	printf("%-20s%-20s%-7s%-9s   %-17s%-12s%-12s%-14s", "Familia", "Imia", "Pol", "Group", "Ocenki", "Rost", "Ves", "Birthday");
+	printf("\n=============================================================================================================\n\n");
+
+	for(int i = 0; i < n; i++)
+	{
+		printf("%-20s%-20s %-6c %-8d", ob[i].fam, ob[i].name, ob[i].pol, ob[i].group);
+		for(int j = 0; j < 5; j++)
+		{
+			printf("%-3d", ob[i].marks[j]);
+		}
+		printf("     %-12.1lf%-12.1lf%02d.%02d.%d\n\n", ob[i].rost, ob[i].ves, ob[i].birthday.day, ob[i].birthday.month, ob[i].birthday.year);
+	}
+}
+
+int main()
+{ 
+	const int N = 30;
+	Student ob[N];
+	int n;
+
+	do
+	{
+		printf("\nVvedite kolichestvo studentov ot 1 do %d: ", N);
+		scanf("%d", &n);
+	}
+	while(n < 1 || n > N);
+
+	createArrayStudents(ob, n);
+
+	showArrayStudents(ob, n);
+	
+	printf("\n\n\nThe end!!!\n");
+	_getch();
+	return 0;
+}
+
+
+//////////////////////////////
+
+
