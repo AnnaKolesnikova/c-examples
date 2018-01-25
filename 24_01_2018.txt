@@ -1,0 +1,629 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<string.h>
+#include<locale.h>
+
+struct Person
+{
+	char FirstName[20];
+	char LastName[20];
+	int Age;
+};
+
+void EnterPerson(Person & Obj);
+void CopyPerson(Person &from, Person &to);
+void PrintPerson(Person &Obj);
+Person *AddToEnd(Person *M, int &k, Person &Obj);
+Person *SortByAge(Person *M, int k);
+Person *SortByAlphabet(Person *M, int k);
+void SearchPersonByFirstname(Person *M, int k);
+void SearchPersonByLastname(Person *M, int k);
+void SearchPersonByAge(Person *M, int k);
+Person *DeletePerson(Person *M, int &k);
+void ShowAll(Person *M, int k);
+Person *DeleteAll(Person *M, int &k);
+Person *DeleteAll(Person *M, int &k);
+int menu();
+int menu1();
+
+void EnterPerson(Person & Obj)
+{
+	system("cls");
+	printf("\nVvedite fam: ");
+	fflush(stdin);
+	scanf("%s", Obj.LastName);
+
+	printf("\nVvedite name: ");
+	fflush(stdin);
+	scanf("%s", Obj.FirstName);
+
+	printf("\nVvedite age: ");
+	scanf("%d", &Obj.Age);
+}
+Person * AddToEnd(Person * M, int & k, Person & Obj)
+{
+	system("cls");
+	if(k > 0)
+	{
+		Person * M1 = (Person*)malloc((k + 1) * sizeof(Person));
+		if(M1 == NULL)
+		{
+			system("cls");
+			printf("\nPamiat ne videlena\n");
+			_getch();
+			return M;
+		}
+
+		for(int i = 0; i < k; i++)
+		{
+			M1[i] = M[i];
+		}
+
+		free(M);
+
+		M1[k] = Obj;
+		k++;
+		return M1;
+	}
+	else
+	{
+		M = (Person*)malloc(1 * sizeof(Person));
+		if(M == NULL)
+		{
+			system("cls");
+			printf("\nPamiat ne videlena\n");
+			_getch();
+			return M;
+		}
+
+		M[k] = Obj;
+		k++;
+		return M;
+	}
+}
+void ShowAll(Person *M, int k)
+{
+	system("cls");
+	if(k > 0)
+	{
+		printf("\n=========================================================\n");
+		printf("%-20s%-20s%s", "Familia", "Imia", "Vozrast");
+		printf("\n=========================================================\n\n");
+
+		for(int i = 0; i < k; i++)
+		{
+			PrintPerson(M[i]);
+		}
+	}
+	else
+	{
+		printf("\nDannie v massive otsutstvuiut\n");
+	}
+}
+void PrintPerson(Person &Obj)
+{
+	printf("%-20s%-20s%d\n\n", Obj.LastName, Obj.FirstName, Obj.Age);
+}
+Person * SortByAlphabet(Person *M, int k)
+{
+	int q;
+	bool flag = false;
+
+	do
+	{
+		system("cls");
+		printf("\nVvedite\n\n1 - sort original\n\n2 - cort copy\n\n>>> ");
+		scanf("%d", &q);
+
+		if(q == 1)
+		{
+			flag = true;
+
+			for(int j = 1; j < k; j++)
+			{
+				for(int i = 0; i < k - j; i++)
+				{
+					if(strcmp(M[i].LastName, M[i+1].LastName) == 1)
+					{
+						CopyPerson(M[i], M[i+1]);
+					}
+					else
+					{
+						if(strcmp(M[i].LastName, M[i+1].LastName) == 0)
+						{
+							if(strcmp(M[i].FirstName, M[i+1].FirstName) == 1)
+							{
+								CopyPerson(M[i], M[i+1]);
+							}
+						}
+					}
+				}
+			}
+
+			ShowAll(M, k);
+		}
+		else
+		{
+			if(q == 2)
+			{
+				flag = true;
+				Person * M1 = (Person*)malloc(k * sizeof(Person));
+				if(M1 == NULL)
+				{
+					system("cls");
+					printf("\nPamiat ne videlena\n");
+					_getch();
+					return M;
+				}
+
+				for(int i = 0; i < k; i++)
+				{
+					M1[i] = M[i];
+				}
+
+				for(int j = 1; j < k; j++)
+				{
+					for(int i = 0; i < k - j; i++)
+					{
+						if(strcmp(M1[i].LastName, M1[i+1].LastName) == 1)
+						{
+							CopyPerson(M1[i], M1[i+1]);
+						}
+						else
+						{
+							if(strcmp(M1[i].LastName, M1[i+1].LastName) == 0)
+							{
+								if(strcmp(M1[i].FirstName, M1[i+1].FirstName) == 1)
+								{
+									CopyPerson(M1[i], M1[i+1]);
+								}
+							}
+						}
+					}
+				}
+
+				ShowAll(M1, k);
+				free(M1);
+			}
+			else
+			{
+				system("cls");
+				printf("\n\nERROR!!!\n");
+				_getch();
+			}
+		}
+	}
+	while(flag == false);
+	return M;
+}
+void CopyPerson(Person &from, Person &to)
+{
+	Person buf;
+	buf = from;
+	from = to;
+	to = buf;
+}
+Person *SortByAge(Person *M, int k)
+{
+	int q;
+	bool flag = false;
+
+	do
+	{
+		system("cls");
+		printf("\nVvedite\n\n1 - sort original\n\n2 - cort copy\n\n>>> ");
+		scanf("%d", &q);
+
+		if(q == 1)
+		{
+			flag = true;
+
+			for(int j = 1; j < k; j++)
+			{
+				for(int i = 0; i < k - j; i++)
+				{
+					if(M[i].Age > M[i+1].Age)
+					{
+						CopyPerson(M[i], M[i+1]);
+					}
+				}
+			}
+
+			ShowAll(M, k);
+		}
+		else
+		{
+			if(q == 2)
+			{
+				flag = true;
+				Person * M1 = (Person*)malloc(k * sizeof(Person));
+				if(M1 == NULL)
+				{
+					system("cls");
+					printf("\nPamiat ne videlena\n");
+					_getch();
+					return M;
+				}
+
+				for(int i = 0; i < k; i++)
+				{
+					M1[i] = M[i];
+				}
+
+				for(int j = 1; j < k; j++)
+				{
+					for(int i = 0; i < k - j; i++)
+					{
+						if(M1[i].Age > M1[i+1].Age)
+						{
+							CopyPerson(M1[i], M1[i+1]);
+						}
+					}
+				}
+
+				ShowAll(M1, k);
+				free(M1);
+			}
+			else
+			{
+				system("cls");
+				printf("\n\nERROR!!!\n");
+				_getch();
+			}
+		}
+	}
+	while(flag == false);
+	return M;
+}
+void SearchPersonByFirstname(Person *M, int k)
+{
+	char FN[80];
+	printf("Vvedite imya dlya poiska: ");
+	fflush(stdin);
+	scanf("%s", FN);
+	
+	bool flag = false;
+
+	for(int i = 0; i < k; i++)
+	{
+		if(strcmp(M[i].FirstName, FN) == 0)
+		{
+			flag = true;
+			break;
+		}
+	}
+
+	system("cls");
+	if(flag == true)
+	{
+		printf("\n=========================================================\n");
+		printf("%-20s%-20s%s", "Familia", "Imia", "Vozrast");
+		printf("\n=========================================================\n\n");
+
+		for(int i = 0; i < k; i++)
+		{
+			if(strcmp(M[i].FirstName, FN) == 0)
+			{
+				PrintPerson(M[i]);
+			}
+		}
+	}
+	else
+	{
+		printf("\n\nZapisey s imenem %s ne naideno\n", FN);	
+	}
+}
+void SearchPersonByLastname(Person *M, int k)
+{
+	char LN[80];
+	printf("Vvedite familiu dlya poiska: ");
+	fflush(stdin);
+	scanf("%s", LN);
+	
+	bool flag = false;
+
+	for(int i = 0; i < k; i++)
+	{
+		if(strcmp(M[i].LastName, LN) == 0)
+		{
+			flag = true;
+			break;
+		}
+	}
+
+	system("cls");
+	if(flag == true)
+	{
+		printf("\n=========================================================\n");
+		printf("%-20s%-20s%s", "Familia", "Imia", "Vozrast");
+		printf("\n=========================================================\n\n");
+
+		for(int i = 0; i < k; i++)
+		{
+			if(strcmp(M[i].LastName, LN) == 0)
+			{
+				PrintPerson(M[i]);
+			}
+		}
+	}
+	else
+	{
+		printf("\n\nZapisey s familiey %s ne naideno\n", LN);	
+	}
+}
+void SearchPersonByAge(Person *M, int k)
+{
+	int A;
+	printf("Vvedite vozrast dlya poiska: ");
+	scanf("%d", &A);
+	
+	bool flag = false;
+
+	for(int i = 0; i < k; i++)
+	{
+		if(M[i].Age == A)
+		{
+			flag = true;
+			break;
+		}
+	}
+
+	system("cls");
+	if(flag == true)
+	{
+		printf("\n=========================================================\n");
+		printf("%-20s%-20s%s", "Familia", "Imia", "Vozrast");
+		printf("\n=========================================================\n\n");
+
+		for(int i = 0; i < k; i++)
+		{
+			if(M[i].Age == A)
+			{
+				PrintPerson(M[i]);
+			}
+		}
+	}
+	else
+	{
+		printf("\n\nZapisey s vozrastom %d ne naideno\n", A);	
+	}
+}
+Person *DeleteAll(Person *M, int &k)
+{
+	free(M);
+	k = 0;
+	printf("\n\nVse dannie udaleni\n");
+	return NULL;
+}
+Person * DeletePerson(Person *M, int &k)
+{
+	Person P, * Mans = 0;
+	int n = 0, q = 0;
+
+	printf("\nVvedite informaciu ob udaliaemom Persone posle najatia luboi klavishi");
+	_getch();
+	EnterPerson(P);
+
+	for(int i = 0; i < k; i++)
+	{
+		if(strcmp(M[i].LastName, P.LastName) != 0 || strcmp(M[i].FirstName, P.FirstName) != 0 || M[i].Age != P.Age)
+		{
+			Mans = AddToEnd(Mans, n, M[i]);
+		}
+		else
+		{
+			q++;
+		}
+	}
+
+	system("cls");
+	if(q == 0)
+	{
+		printf("\n\nZapisi dlia udalenia ne naideni\n");
+	}
+	else
+	{
+		printf("\n\nUdaleno zapisey: %d\n", q);
+	}
+
+	k = n;
+	free(M);
+	return Mans;
+			
+}
+int menu1()
+{
+	int z;
+	char str[50];
+
+	do
+	{
+		system("cls");
+		puts("\nVvedite:");
+		puts("1 - Sortirovka zapisey po vozrastu");
+		puts("2 - Sortirovka zapisey v alfovitnom poryadke");
+		puts("0 - Vyhod\n");
+	
+		printf(">>> ");
+		fflush(stdin);
+		scanf("%s", str);
+
+		if(str[0] == '0')
+		{
+			return 0;
+		}
+
+		z = atoi(str);
+		if(z == 0)
+		{
+			system("cls");
+			printf("\n\nERROR!!!\n");
+			_getch();
+		}
+	}
+	while(z == 0);
+	return z;
+}
+int menu()
+{
+	int z;
+	char str[50];
+
+	do
+	{
+		system("cls");
+		puts("\nVvedite:");
+		puts("1 - Dobavlenie zapisi o cheloveke");
+		puts("2 - Sortirovka zapisey");
+		puts("3 - ");
+		puts("4 - Poisk ludei po imeni");
+		puts("5 - Poisk ludei po familii");
+		puts("6 - Poisk ludei po vozrastu");
+		puts("7 - Udalenie zapisi o cheloveke");
+		puts("8 - Pokazat' vse zapisi");
+		puts("9 - Udalit' vse zapisi");
+		puts("0 - Vyhod\n");
+	
+		printf(">>> ");
+		fflush(stdin);
+		scanf("%s", str);
+
+		if(str[0] == '0')
+		{
+			return 0;
+		}
+
+		z = atoi(str);
+		if(z == 0)
+		{
+			system("cls");
+			printf("\n\nERROR!!!\n");
+			_getch();
+		}
+	}
+	while(z == 0);
+	return z;
+}
+int main()
+{
+	int n = 0;
+	Person * Mans = 0;
+	while(int z = menu())
+	{
+		switch(z)
+		{
+		case 1:
+			Person P;
+			EnterPerson(P);
+			Mans = AddToEnd(Mans, n, P);
+			break;
+		case 2:
+			if(n > 1)
+			{
+				system("cls");
+				while(int z = menu1())
+				{
+					switch(z)
+					{
+					case 1:
+						Mans = SortByAge(Mans, n);
+						break;
+					case 2:
+						Mans = SortByAlphabet(Mans, n);
+						break;
+					default:
+						system("cls");
+						puts("\n\nNevernyi vvod!");
+						break;
+					}
+					printf("\n\nPress any key...\n\n");
+					_getch();
+					system("cls");
+				}
+			}
+			else
+			{
+				system("cls");
+				printf("\nSortirovat nechego\n");
+			}
+			break;
+		case 3:
+			
+			break;
+		case 4:
+			system("cls");
+			if(n > 0)
+			{
+				SearchPersonByFirstname(Mans, n);
+			}
+			else
+			{
+				printf("\n\nMassiv pustoy\n");
+			}
+			break;
+		case 5:
+			system("cls");
+			if(n > 0)
+			{
+				SearchPersonByLastname(Mans, n);
+			}
+			else
+			{
+				printf("\n\nMassiv pustoy\n");
+			}
+			break;
+		case 6:
+			system("cls");
+			if(n > 0)
+			{
+				SearchPersonByAge(Mans, n);
+			}
+			else
+			{
+				printf("\n\nMassiv pustoy\n");
+			}
+			break;
+		case 7:
+			system("cls");
+			if(n > 0)
+			{
+				Mans = DeletePerson(Mans, n);
+			}
+			else
+			{
+				printf("\n\nUdaliat nechego\n");
+			}
+			break;
+		case 8:
+			ShowAll(Mans, n);
+			break;
+		case 9:
+			system("cls");
+			if(n > 0)
+			{
+				Mans = DeleteAll(Mans, n);
+			}
+			else
+			{
+				printf("\n\nUdaliat nechego\n");
+			}
+			break;
+		default:
+			system("cls");
+			puts("\n\nNevernyi vvod!");
+			break;
+		}
+		printf("\n\nPress any key...\n\n");
+		_getch();
+		system("cls");
+	}
+
+	printf("\n\nThe end!!!\n");
+	_getch();
+	return 0;
+}
+
