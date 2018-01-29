@@ -1,0 +1,235 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<string.h>
+#include<locale.h>
+
+int main()
+{
+	int x, * y, n = 0;
+	FILE * f;
+
+	/*
+	char str[100];
+	printf("\n\nVvedite put i imia fala: ");
+	fflush(stdin);
+	scanf("%s", str);
+	f = fopen(str, "w+");
+*/
+
+	f = fopen("d:\\qwer\\aaa.txt", "a+");
+	if(f == NULL)
+	{
+		system("cls");
+		printf("\n\nFile not opened!!!\n");
+		_getch();
+		return 0;
+	}
+
+	printf("\nVvedite x: ");
+	scanf("%d", &x);
+
+	while(x != 0)
+	{
+		fprintf(f, "%d ", x);
+		
+		printf("\nVvedite x: ");
+		scanf("%d", &x);
+	}
+
+	fseek(f, 0, SEEK_SET);
+
+	fscanf(f, "%d", &x);
+	while(!feof(f))					//while(feof(f) == NULL)
+	{
+		n++;
+		fscanf(f, "%d", &x);
+	}
+
+	fseek(f, 0, SEEK_SET);
+
+	y = (int*)malloc(n * sizeof(int));
+	if(y == NULL)
+	{
+		printf("\n\nPamiat ne videlena\n");
+		_getch();
+		return 0;
+	}
+
+	for(int i = 0; i < n; i++)
+	{
+		fscanf(f, "%d", &y[i]);
+	}
+
+	printf("\n\nSoderjimoe dinamicheskogo massiva:\n\n");
+	for(int i = 0; i < n; i++)
+	{
+		printf("%d ", y[i]);
+	}
+	
+	free(y);
+	fclose(f);
+	printf("\n\nThe end!!!\n");
+	_getch();
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<string.h>
+
+struct Student
+{
+	char fam[20];
+	int marks[4];
+	float sr_ball;
+};
+
+char name[]="d:\\qwer\\student.txt";
+
+void fill_file();
+void fill_file()
+{
+	FILE * k1;
+	Student ob;
+	k1 = fopen(name, "wt");
+	if(!k1){
+		system("cls");
+		puts("File student ne otkrilsay!!!");
+		_getch();
+		return;
+	}
+
+	fprintf(k1,"%-21s %-11s %s\n", "Familiay", "Marks", "Sr_ball");
+	puts("Fam: Vvod zavesshaetsya - 0");
+	fflush(stdin);
+	scanf("%s", ob.fam);
+	while(ob.fam[0] != '0'){
+		puts("Marks:");
+		ob.sr_ball = 0.0;
+		for(int i = 0; i < 4; i++)
+		{
+			scanf("%d", &ob.marks[i]);
+			ob.sr_ball += ob.marks[i];
+		}
+
+		ob.sr_ball /= 4;
+
+		fprintf(k1, "%-20s %2d %2d %2d %2d %9.2f\n", ob.fam, ob.marks[0], ob.marks[1], ob.marks[2], ob.marks[3], ob.sr_ball);
+		puts("Fam: Vvod zavesshaetsya - 0");
+		fflush(stdin);
+		scanf("%s",ob.fam);
+	}
+	fclose(k1);
+}
+
+void dobav_file();
+void dobav_file()
+{
+	FILE * k1;
+	Student ob;
+	k1 = fopen(name,"at");
+	if(!k1)
+	{
+		system("cls");
+		puts("File student ne otkrilsay!!!");
+		_getch();
+		return;
+	}
+
+	puts("Fam: Vvod zavesshaetsya - 0");
+	fflush(stdin);
+	scanf("%s",ob.fam);
+	while(ob.fam[0] != '0')
+	{
+		puts("Marks:");
+		ob.sr_ball = 0.0;
+		for(int i = 0; i < 4; i++)
+		{
+			scanf("%d", &ob.marks[i]);
+			ob.sr_ball += ob.marks[i];
+		}
+		ob.sr_ball /= 4;
+
+		fprintf(k1, "%-20s %2d %2d %2d %2d %9.2f\n", ob.fam, ob.marks[0], ob.marks[1], ob.marks[2], ob.marks[3], ob.sr_ball);
+
+		puts("Fam: Vvod zavesshaetsya - 0");
+		fflush(stdin);
+		scanf("%s", ob.fam);
+	}
+	fclose(k1);
+}
+
+void show_file();
+void show_file()
+{
+	FILE * k1;
+	char x[100] = "pusto";
+	Student ob;
+	k1 = fopen(name, "rt");
+	if(!k1)
+	{
+		system("cls");
+		puts("File student ne otkrilsay!!!");
+		_getch();
+		return;
+	}
+
+	fgets(x, 100, k1);
+	puts(x);
+
+	fscanf(k1, "%s%d%d%d%d%f", ob.fam, &ob.marks[0],  &ob.marks[1], &ob.marks[2], &ob.marks[3], &ob.sr_ball);
+	while(!feof(k1))
+	{
+		printf("%-20s %2d %2d %2d %2d %9.2f\n", ob.fam, ob.marks[0], ob.marks[1], ob.marks[2], ob.marks[3], ob.sr_ball);
+		fscanf(k1,"%s%d%d%d%d%f", ob.fam, &ob.marks[0], &ob.marks[1], &ob.marks[2], &ob.marks[3], &ob.sr_ball);
+	}
+	fclose(k1);
+	
+}
+
+int main()
+{
+	int kod;
+	
+	while(1){
+		system("cls");
+		puts("Enter:\n1 - Sozdanie");
+		puts("2 - Dobavlenie");
+		puts("3 - Prosmotr");
+		puts("0 - exit");
+
+		scanf("%d", &kod);
+		switch(kod)
+		{
+		case 1:
+			fill_file();
+			break;
+		case 2:
+			dobav_file();
+			break;
+		case 3:
+			show_file();
+			_getch();
+			break;
+		case 0:
+			printf("\n\n\tThe end\n");
+			_getch();
+			return 0;
+		default:
+			printf("\n\nNeverniy vvod!!!\n");
+			break;
+		}
+	}
+}
+
+
+
+
