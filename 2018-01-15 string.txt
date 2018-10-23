@@ -14,9 +14,9 @@ int main()
 	unsigned char a, b;
 
 	x = 'w';
-	y = 'þ';
+	y = 'Ã¾';
 	a = 'w';
-	b = 'þ';
+	b = 'Ã¾';
 
 	printf("\nx = %c\tx = %d\n", x, x);
 	printf("\ny = %c\ty = %d\n", y, y);
