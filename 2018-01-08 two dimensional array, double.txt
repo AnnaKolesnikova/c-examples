@@ -21,7 +21,7 @@ int main()
 
 		if(n < 1 || n > N)
 		{
-			system("cls");// очистка консоли
+			system("cls");// Г®Г·ГЁГ±ГІГЄГ  ГЄГ®Г­Г±Г®Г«ГЁ
 			printf("\n\n\tERROR!!!\n");
 			//_getch();
 			fflush(stdin);
@@ -54,7 +54,7 @@ int main()
 	
 	printf("\n\n--------------------------------\n\n");
 
-	//вывод в виде таблицы
+	//ГўГ»ГўГ®Г¤ Гў ГўГЁГ¤ГҐ ГІГ ГЎГ«ГЁГ¶Г»
 	for(int i = 0; i < n; i++)
 	{
 		for(int j = 0; j < m; j++)
@@ -160,10 +160,10 @@ int main()
 #include<conio.h>
 #include<windows.h>
 
-double function(int a, double b, int c);					//прототип функции
-//реализация ф-ии
-double function(int a, double b, int c)						//заголовок ф-ии
-//тело ф-ии
+double function(int a, double b, int c);					//ГЇГ°Г®ГІГ®ГІГЁГЇ ГґГіГ­ГЄГ¶ГЁГЁ
+//Г°ГҐГ Г«ГЁГ§Г Г¶ГЁГї Гґ-ГЁГЁ
+double function(int a, double b, int c)						//Г§Г ГЈГ®Г«Г®ГўГ®ГЄ Гґ-ГЁГЁ
+//ГІГҐГ«Г® Гґ-ГЁГЁ
 {
 	static int x;
 	x++;
@@ -179,7 +179,7 @@ int main()
 	int a = 5, b = 10;
 	double c = 3.9, d;
 	
-	function(a, c, b);			//бесполезный вызов
+	function(a, c, b);			//ГЎГҐГ±ГЇГ®Г«ГҐГ§Г­Г»Г© ГўГ»Г§Г®Гў
 
 	d = function(a, c, b);
 	printf("\n\nd = %.2lf\n", d);
